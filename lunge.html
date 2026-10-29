@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弓箭步教學 - FIT PULSE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff87;
+            --primary-glow: rgba(0, 255, 135, 0.4);
+            --secondary: #60efff;
+            --bg-dark: #0a0e17;
+            --card-bg: rgba(18, 26, 41, 0.8);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --text-main: #f0f4f8;
+            --text-muted: #94a3b8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Noto Sans TC', sans-serif; }
+        
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                linear-gradient(to bottom, rgba(10, 14, 23, 0.88), rgba(10, 14, 23, 0.95)),
+                url('https://images.unsplash.com/photo-1434682881908-b43d0467b798?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        nav { 
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 1.2rem 3rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid var(--card-border); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
+
+        .logo { font-size: 1.6rem; font-weight: 900; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; letter-spacing: 1.5px; }
+        .nav-links { display: flex; list-style: none; gap: 1.5rem; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255, 255, 255, 0.08); }
+        .nav-links a.active { color: var(--primary); border-bottom: 2px solid var(--primary); border-radius: 4px 4px 0 0; }
+
+        .container { max-width: 900px; margin: 2.5rem auto; padding: 0 1.5rem; }
+
+        .detail-card { 
+            background: var(--card-bg); 
+            border-radius: 24px; 
+            padding: 2.5rem; 
+            border: 1px solid var(--card-border); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 { font-size: 2.2rem; font-weight: 900; color: #fff; margin-bottom: 0.8rem; }
+        
+        .target-muscle { 
+            background: rgba(0, 255, 135, 0.1); 
+            color: var(--primary); 
+            display: inline-block; 
+            padding: 0.4rem 1rem; 
+            border-radius: 30px; 
+            font-size: 0.85rem; 
+            font-weight: 600;
+            border: 1px solid rgba(0, 255, 135, 0.2);
+            margin-bottom: 2rem; 
+        }
+
+        .demo-area { 
+            background: rgba(10, 14, 23, 0.7); 
+            border-radius: 16px; 
+            padding: 2.5rem; 
+            text-align: center; 
+            margin-bottom: 2rem; 
+            border: 1px solid var(--card-border); 
+        }
+
+        .lunge-figure { animation: lungeAnim 2.5s infinite ease-in-out; }
+        @keyframes lungeAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(20px); }
+        }
+
+        ol { margin-left: 1.5rem; margin-bottom: 2rem; }
+        li { margin-bottom: 1rem; color: #d0d7de; font-size: 1.05rem; }
+
+        .notice { 
+            background: rgba(255, 82, 82, 0.1); 
+            border-left: 4px solid #ff5252; 
+            padding: 1.2rem; 
+            border-radius: 8px; 
+            margin-bottom: 2rem; 
+            color: #ff8a8a;
+            font-size: 0.95rem;
+        }
+
+        .timer-card { 
+            background: linear-gradient(135deg, rgba(26, 38, 59, 0.85), rgba(15, 23, 38, 0.95)); 
+            border-radius: 20px; 
+            padding: 2rem; 
+            text-align: center; 
+            margin-top: 2rem; 
+            border: 1px solid rgba(0, 255, 135, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 255, 135, 0.1);
+        }
+
+        .timer-display { 
+            font-size: 3.8rem; 
+            font-weight: 900; 
+            color: var(--primary); 
+            margin: 0.8rem 0; 
+            font-family: monospace; 
+            text-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .btn-group { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-top: 1rem; }
+        .btn { background: var(--primary); color: #0a0e17; padding: 0.6rem 1.4rem; border-radius: 10px; border: none; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
+        .btn-outline { background: transparent; border: 1px solid var(--card-border); color: var(--text-main); }
+        .btn-outline:hover { border-color: var(--primary); color: var(--primary); background: rgba(0, 255, 135, 0.05); }
+        .btn-main { background: linear-gradient(135deg, var(--primary), #00c853); box-shadow: 0 4px 15px var(--primary-glow); }
+        .btn-main:hover { transform: scale(1.05); }
+        .btn-back { display: inline-block; margin-top: 2rem; color: var(--text-muted); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
+        .btn-back:hover { color: var(--primary); }
+        footer { text-align: center; padding: 2.5rem; color: var(--text-muted); border-top: 1px solid var(--card-border); margin-top: 4rem; background: rgba(10, 14, 23, 0.8); }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">⚡ FIT PULSE</a>
+        <ul class="nav-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="squat.html">深蹲</a></li>
+            <li><a href="pushup.html">俯臥撐</a></li>
+            <li><a href="plank.html">棒式</a></li>
+            <li><a href="lunge.html" class="active">弓箭步</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="detail-card">
+            <h1>弓箭步 (Lunge)</h1>
+            <span class="target-muscle">主要肌肉：股四頭肌、臀大肌、平衡控制肌群</span>
+
+            <div class="demo-area">
+                <svg width="140" height="150" viewBox="0 0 100 150">
+                    <g class="lunge-figure">
+                        <circle cx="50" cy="25" r="12" fill="#00ff87" />
+                        <line x1="50" y1="37" x2="50" y2="85" stroke="#00ff87" stroke-width="8" stroke-linecap="round" />
+                        <polyline points="50,85 75,100 75,135" stroke="#00ff87" stroke-width="8" stroke-linecap="round" fill="none" />
+                        <polyline points="50,85 25,105 25,135" stroke="#00ff87" stroke-width="8" stroke-linecap="round" fill="none" />
+                    </g>
+                </svg>
+                <p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.8rem;">動態幾何圖解</p>
+            </div>
+
+            <h3 style="margin-bottom:1rem; color:#fff;">動作指導要點：</h3>
+            <ol>
+                <li>雙腳平行站立，寬度與臀部同寬，身體保持挺直。</li>
+                <li>單腳向前跨出一大步，後腳跟自然抬起。</li>
+                <li>吸氣時重心垂直下移，前膝與後膝皆彎曲約 90 度。</li>
+                <li>前膝不超過腳尖，後膝接近地面但不碰撞。</li>
+                <li>吐氣時利用前腳跟發力，將身體推回起始站姿，隨後換腳進行。</li>
+            </ol>
+
+            <div class="notice">
+                ⚠️ <strong>注意事項：</strong> 保持軀幹全程垂直，避免身體過度前傾或左右晃動。
+            </div>
+
+            <div class="timer-card">
+                <h3 style="color:#fff;">智能組數與計時器</h3>
+                <div class="timer-display" id="display">00:30</div>
+                <div class="btn-group">
+                    <button class="btn btn-outline" onclick="setTime(15)">15 秒</button>
+                    <button class="btn btn-outline" onclick="setTime(30)">30 秒</button>
+                    <button class="btn btn-outline" onclick="setTime(60)">60 秒</button>
+                </div>
+                <div class="btn-group" style="margin-top:1.2rem;">
+                    <button class="btn btn-main" onclick="startTimer()">開始計時</button>
+                    <button class="btn btn-outline" onclick="pauseTimer()">暫停</button>
+                    <button class="btn btn-outline" onclick="resetTimer()">重置</button>
+                </div>
+                <div style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+                    已完成組數：<span id="setCount" style="color:var(--primary); font-weight:bold; font-size:1.2rem;">0</span> 組
+                    <button class="btn btn-outline" onclick="addSet()" style="margin-left: 0.8rem; padding: 0.3rem 0.8rem;">完成一組 +1</button>
+                </div>
+            </div>
+
+            <a href="index.html" class="btn-back">← 返回首頁總覽</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 FIT PULSE 體適能指南 | 現代多頁面架構
+    </footer>
+
+    <script>
+        let timeLeft = 30;
+        let totalTime = 30;
+        let timer = null;
+
+        function updateDisplay() {
+            const min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+            const sec = String(timeLeft % 60).padStart(2, '0');
+            document.getElementById('display').textContent = `${min}:${sec}`;
+        }
+
+        function setTime(sec) {
+            pauseTimer();
+            totalTime = sec;
+            timeLeft = sec;
+            updateDisplay();
+        }
+
+        function startTimer() {
+            if (timer) return;
+            timer = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateDisplay();
+                } else {
+                    pauseTimer();
+                    alert("時間到！休息一下或開始下一組。");
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            clearInterval(timer);
+            timer = null;
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timeLeft = totalTime;
+            updateDisplay();
+        }
+
+        function addSet() {
+            let sets = parseInt(localStorage.getItem('lunge_sets') || '0') + 1;
+            localStorage.setItem('lunge_sets', sets);
+            document.getElementById('setCount').textContent = sets;
+        }
+
+        document.getElementById('setCount').textContent = localStorage.getItem('lunge_sets') || '0';
+    </script>
+</body>
+</html>

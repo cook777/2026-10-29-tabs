@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIT PULSE - 專業體適能指導</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff87;
+            --primary-glow: rgba(0, 255, 135, 0.4);
+            --secondary: #60efff;
+            --bg-dark: #0a0e17;
+            --card-bg: rgba(18, 26, 41, 0.75);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --text-main: #f0f4f8;
+            --text-muted: #94a3b8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Noto Sans TC', sans-serif; }
+        
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            /* 高質感健身房暗色背景圖 + 暗色遮罩 overlay */
+            background-image: 
+                linear-gradient(to bottom, rgba(10, 14, 23, 0.85), rgba(10, 14, 23, 0.92)),
+                url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        nav { 
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 1.2rem 3rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid var(--card-border); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
+
+        .logo { 
+            font-size: 1.6rem; 
+            font-weight: 900; 
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none; 
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links { display: flex; list-style: none; gap: 1.5rem; }
+        .nav-links a { 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            transition: all 0.3s ease; 
+            font-size: 0.95rem; 
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+        .nav-links a:hover, .nav-links a.active { 
+            color: #fff; 
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .nav-links a.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .container { max-width: 1200px; margin: 3rem auto; padding: 0 1.5rem; }
+
+        .hero { 
+            text-align: center; 
+            padding: 5rem 2rem; 
+            /* 毛玻璃質感 Hero 區塊 */
+            background: rgba(22, 31, 49, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px; 
+            margin-bottom: 3.5rem; 
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .hero h1 { 
+            font-size: 3.2rem; 
+            font-weight: 900;
+            margin-bottom: 1.2rem; 
+            background: linear-gradient(135deg, #ffffff 40%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p { 
+            color: var(--text-muted); 
+            font-size: 1.2rem; 
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+            gap: 2rem; 
+        }
+
+        .card { 
+            background: var(--card-bg); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            border: 1px solid var(--card-border); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover { 
+            transform: translateY(-8px); 
+            border-color: rgba(0, 255, 135, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 255, 135, 0.2);
+            background: rgba(22, 31, 49, 0.85);
+        }
+
+        .card-header {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(18, 26, 41, 0.95));
+        }
+
+        .card-icon {
+            position: relative;
+            z-index: 2;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(10, 14, 23, 0.8);
+            border: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .card-content { padding: 1.8rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-title { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 0.6rem; }
+        .card-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex-grow: 1; }
+
+        .btn { 
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), #00c853); 
+            color: #0a0e17; 
+            padding: 0.8rem 1.5rem; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            font-weight: 700; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 15px var(--primary-glow);
+            gap: 8px;
+        }
+
+        .btn:hover { 
+            transform: scale(1.02);
+            box-shadow: 0 6px 22px rgba(0, 255, 135, 0.6);
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 2.5rem; 
+            color: var(--text-muted); 
+            border-top: 1px solid var(--card-border); 
+            margin-top: 4rem; 
+            font-size: 0.9rem;
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(12px);
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; flex-direction: column; gap: 1rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .container { margin: 1.5rem auto; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">⚡ FIT PULSE</a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">首頁</a></li>
+            <li><a href="squat.html">深蹲</a></li>
+            <li><a href="pushup.html">俯臥撐</a></li>
+            <li><a href="plank.html">棒式</a></li>
+            <li><a href="lunge.html">弓箭步</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="hero">
+            <h1>打造巔峰體適能</h1>
+            <p>探索 4 大徒手黃金動作，結合極簡美學示範與精準訓練計時</p>
+        </section>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-header" style="background-image: url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=600&auto=format&fit=crop');">
+                    <div class="card-icon">🦵</div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">深蹲 (Squat)</h2>
+                    <p class="card-desc">下肢力量之王，精準激活股四頭肌與臀大肌，提升基礎代謝。</p>
+                    <a href="squat.html" class="btn">開始訓練 ➔</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" style="background-image: url('https://images.unsplash.com/photo-1598971639058-fab3c3109a00?q=80&w=600&auto=format&fit=crop');">
+                    <div class="card-icon">💪</div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">俯臥撐 (Push-Up)</h2>
+                    <p class="card-desc">上肢推力經典，打造強健胸肌、前頭肌與手臂穩定度。</p>
+                    <a href="pushup.html" class="btn">開始訓練 ➔</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" style="background-image: url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=600&auto=format&fit=crop');">
+                    <div class="card-icon">🧘</div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">棒式 (Plank)</h2>
+                    <p class="card-desc">核心穩定樞紐，全面強化腹橫肌與深層脊椎支撐群。</p>
+                    <a href="plank.html" class="btn">開始訓練 ➔</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" style="background-image: url('https://images.unsplash.com/photo-1434682881908-b43d0467b798?q=80&w=600&auto=format&fit=crop');">
+                    <div class="card-icon">🏃</div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">弓箭步 (Lunge)</h2>
+                    <p class="card-desc">單腿平衡訓練，優化髖關節穩定度並改善肌力不平衡。</p>
+                    <a href="lunge.html" class="btn">開始訓練 ➔</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 FIT PULSE 體適能指南 | 現代多頁面架構
+    </footer>
+</body>
+</html>
